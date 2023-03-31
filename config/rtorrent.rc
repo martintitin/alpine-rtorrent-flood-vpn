@@ -11,6 +11,7 @@ directory.default.set = (cat, "/data/incomplete/")
 encoding.add = utf8
 system.umask.set = 0027
 system.cwd.set = (directory.default)
+system.daemon.set = true
 pieces.hash.on_completion.set = yes
 network.port_range.set = 49314-49314
 network.port_random.set = no
@@ -91,5 +92,3 @@ schedule2 = session_save, 1200, 43200, ((session.save))
 encoding_list = UTF-8
 scgi_local = /tmp/rtorrent_scgi.sock
 
-# Start rutorrent plugins
-execute2 = {sh,-c,/usr/bin/php7 /var/www/rutorrent/php/initplugins.php &}

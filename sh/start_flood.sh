@@ -1,4 +1,3 @@
 #!/bin/sh
 
-cd /usr/local/flood
-exec npm start
+exec flood --rtsocket=/tmp/rtorrent_scgi.sock --auth=none

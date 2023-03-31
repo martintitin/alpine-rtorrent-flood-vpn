@@ -75,6 +75,8 @@ done ;
 IFS=${OLDIFS}
 
 # allow nginx for rutorrent/flood
+iptables -A INPUT -p tcp --dport 8080 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 8080 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 iptables -A INPUT -i ${NET_IF} -p tcp --dport 8080 -j ACCEPT
 iptables -A OUTPUT -o ${NET_IF} -p tcp --sport 8080 -j ACCEPT
 
@@ -83,9 +85,9 @@ iptables -A INPUT -i lo -j ACCEPT
 iptables -A OUTPUT -o lo -j ACCEPT
 
 # set default policy (in the end so that we can use DNS before VPN is up)
-iptables -P INPUT DROP
-iptables -P OUTPUT DROP
-iptables -P FORWARD DROP
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
 
 echo_log "[info] Done. iptables rules :"
 iptables -S
@@ -120,7 +122,7 @@ if [ "${UID}" != "${CUR_UID}" ]; then
   usermod -u ${UID} rtorrent
 fi
 
-chown -R rtorrent:rtorrent /data /var/www/rutorrent /home/rtorrent/ /var/tmp/nginx
+chown -R rtorrent:rtorrent /data /home/rtorrent/ /var/lib/nginx
 
 # start everything
 ##################

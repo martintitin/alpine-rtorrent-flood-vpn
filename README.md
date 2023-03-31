@@ -1,17 +1,15 @@
-Alpine rtorrent + OpenVPN + ruTorrent/Flood docker container
+Alpine rtorrent + OpenVPN + Flood docker container
 ============================================================
 
 Alpine Linux : https://alpinelinux.org/
 
 rtorrent : https://github.com/rakshasa/rtorrent
 
-rutorrent : https://github.com/Novik/ruTorrent
-
-flood : https://github.com/jfurrow/flood
+flood : https://github.com/jesec/flood
 
 #### Main features
 - Based on Alpine Linux.
-- rTorrent and libtorrent are compiled from source.
+- rTorrent and libtorrent.
 - OpenVPN to tunnel torrent traffic securely (with iptables).
 
 #### Environment variables
@@ -49,5 +47,4 @@ Completed downloads are stored in /data/downloads.
 - **8080** : HTTP access for ruTorrent/flood
 
 #### WEB UI
-- ruTorrent : `http://<host ip>:8080`
-- flood : `http://<host ip>:8080/flood/`
+- flood : `http://<host ip>:8080`
